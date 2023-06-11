@@ -1,0 +1,19 @@
+<div class="container">
+    <table class="table table-bordered mt-5">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center tablebg">ID</th>
+            <th scope="col" class="tablebg">Title</th>
+            <th scope="col" class="text-center tablebg">Check</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of allListData | paginate: { itemsPerPage:20, currentPage: p } ">
+            <td class="text-center col-md-1">{{item.id}}</td>
+            <td class="col-md-4"><span [ngStyle]="{ 'text-decoration': item.completed ? 'line-through' : 'none' }">{{ item.title }}</span></td>
+            <td class="text-center col-md-1"><input type="checkbox"  [checked]="item.completed" (change)="toggleData(item)"></td>
+          </tr>
+        </tbody>
+      </table> 
+      <pagination-controls (pageChange)="p = $event" class="text-end"></pagination-controls>
+      </div>
